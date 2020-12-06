@@ -89,7 +89,7 @@
 
 #include "bmi160.h"
 
-// Test Git!
+// Test test test!
 
 #define DEVICE_NAME                         "Implantable_MA"                            /**< Name of device. Will be included in the advertising data. */
 #define MANUFACTURER_NAME                   "NeuroLux"                              /**< Manufacturer. Will be passed to Device Information Service. */
