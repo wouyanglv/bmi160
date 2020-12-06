@@ -1,5 +1,5 @@
 Output/eeg_emg_pca10040_s132\ Debug/Obj/oberon_backend_hash.o: \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\backend\oberon\oberon_backend_hash.c \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\backend\oberon\oberon_backend_hash.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdbool.h \
@@ -29,7 +29,7 @@ Output/eeg_emg_pca10040_s132\ Debug/Obj/oberon_backend_hash.o: \
  ../../../../../../components/softdevice/s132/headers/nrf_svc.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
  ../../../../../../components/libraries/util/nrf_assert.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\backend\oberon\oberon_backend_hash.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\backend\oberon\oberon_backend_hash.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/crypto/nrf_crypto_hash_shared.h \
  ../../../../../../external/nrf_oberon/include/ocrypto_sha256.h \

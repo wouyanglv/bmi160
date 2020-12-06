@@ -1,5 +1,5 @@
 Output/eeg_emg_pca10040_s132\ Debug/Obj/nrf_ble_lesc.o: \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\ble\peer_manager\nrf_ble_lesc.c \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\ble\peer_manager\nrf_ble_lesc.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdbool.h \
@@ -29,7 +29,7 @@ Output/eeg_emg_pca10040_s132\ Debug/Obj/nrf_ble_lesc.o: \
  ../../../../../../components/softdevice/s132/headers/nrf_svc.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
  ../../../../../../components/libraries/util/nrf_assert.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\ble\peer_manager\nrf_ble_lesc.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\ble\peer_manager\nrf_ble_lesc.h \
  ../../../../../../components/softdevice/s132/headers/ble.h \
  ../../../../../../components/softdevice/s132/headers/nrf_svc.h \
  ../../../../../../components/softdevice/s132/headers/nrf_error.h \

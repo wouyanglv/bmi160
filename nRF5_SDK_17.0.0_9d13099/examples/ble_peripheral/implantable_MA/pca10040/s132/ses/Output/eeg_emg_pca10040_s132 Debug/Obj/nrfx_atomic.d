@@ -1,6 +1,6 @@
 Output/eeg_emg_pca10040_s132\ Debug/Obj/nrfx_atomic.o: \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\modules\nrfx\soc\nrfx_atomic.c \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\modules\nrfx\soc\nrfx_atomic.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\modules\nrfx\soc\nrfx_atomic.c \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\modules\nrfx\soc\nrfx_atomic.h \
  ../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../integration/nrfx/nrfx_config.h ../config/sdk_config.h \
  ../../../../../../modules/nrfx/drivers/nrfx_common.h \
@@ -52,4 +52,4 @@ Output/eeg_emg_pca10040_s132\ Debug/Obj/nrfx_atomic.o: \
  ../../../../../../components/softdevice/s132/headers/nrf_sd_def.h \
  ../../../../../../components/softdevice/s132/headers/nrf_soc.h \
  ../../../../../../modules/nrfx/drivers/nrfx_errors.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\modules\nrfx\soc\nrfx_atomic_internal.h
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\modules\nrfx\soc\nrfx_atomic_internal.h

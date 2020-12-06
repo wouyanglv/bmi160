@@ -1,5 +1,5 @@
 Output/eeg_emg_pca10040_s132\ Debug/Obj/nrf_ble_qwr.o: \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\ble\nrf_ble_qwr\nrf_ble_qwr.c \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\ble\nrf_ble_qwr\nrf_ble_qwr.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdbool.h \
@@ -30,7 +30,7 @@ Output/eeg_emg_pca10040_s132\ Debug/Obj/nrf_ble_qwr.o: \
  ../../../../../../components/libraries/util/sdk_macros.h \
  ../../../../../../components/libraries/util/nrf_assert.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdlib.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\ble\nrf_ble_qwr\nrf_ble_qwr.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\ble\nrf_ble_qwr\nrf_ble_qwr.h \
  ../../../../../../components/libraries/util/nordic_common.h \
  ../../../../../../components/softdevice/s132/headers/ble.h \
  ../../../../../../components/softdevice/s132/headers/nrf_svc.h \

@@ -5450,7 +5450,7 @@ static void reset_fifo_data_structure(const struct bmi160_dev *dev)
     /* Available data in FIFO is stored in bytes_to_read*/
     *bytes_to_read = (((uint16_t)data[1] << 8) | ((uint16_t)data[0]));
 
-    //SEGGER_RTT_printf(0,"%d\n",(((uint16_t)data[1] << 8) | ((uint16_t)data[0])));}
+    //SEGGER_RTT_printf(0,"%d\n",(((uint16_t)data[1] << 8) | ((uint16_t)data[0])));
     return rslt;
 }
 

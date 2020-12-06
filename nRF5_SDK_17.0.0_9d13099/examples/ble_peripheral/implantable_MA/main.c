@@ -89,7 +89,7 @@
 
 #include "bmi160.h"
 
-// Test test test!
+
 
 #define DEVICE_NAME                         "Implantable_MA"                            /**< Name of device. Will be included in the advertising data. */
 #define MANUFACTURER_NAME                   "NeuroLux"                              /**< Manufacturer. Will be passed to Device Information Service. */
@@ -134,11 +134,9 @@
 
 
 BLE_BIOSIG_SVC_DEF(m_biosig_svc);                                   /**< BioSignal service instance. */
-BLE_BAS_DEF(m_bas);                                                 /**< Structure used to identify the battery service. */
 NRF_BLE_GATT_DEF(m_gatt);                                           /**< GATT module instance. */
 NRF_BLE_QWR_DEF(m_qwr);                                             /**< Context for the Queued Write module.*/
 BLE_ADVERTISING_DEF(m_advertising);                                 /**< Advertising module instance. */
-APP_TIMER_DEF(m_power_level_timer_id);                              /**< Power level timer. */
 APP_TIMER_DEF(m_startup_delay_timer_id);                            /**< Startup delay timer. */
 
 
@@ -147,8 +145,6 @@ static uint16_t m_conn_handle         = BLE_CONN_HANDLE_INVALID;    /**< Handle 
 static ble_uuid_t m_adv_uuids[] =                                   /**< Universally unique service identifiers. */
 {
     {BLE_UUID_HEART_RATE_SERVICE,           BLE_UUID_TYPE_BLE},
-    {BLE_UUID_BATTERY_SERVICE,              BLE_UUID_TYPE_BLE},
-    {BLE_UUID_DEVICE_INFORMATION_SERVICE,   BLE_UUID_TYPE_BLE}
 };
 
 static bool             m_startup_delay;
@@ -165,9 +161,6 @@ static const nrfx_rtc_t   m_rtc = NRFX_RTC_INSTANCE(2); /**< Declaring an instan
 static uint64_t           m_rtc_overflows;
 static uint64_t           m_ns_per_tick;
 static bool               m_rtc_init;
-
-
-
 
 /**@brief Callback function for asserts in the SoftDevice.
  *
@@ -199,8 +192,6 @@ static void delete_bonds(void)
 }
 
 
-
-
 /**@brief Function for starting advertising.
  */
 void advertising_start(bool erase_bonds)
@@ -226,6 +217,7 @@ static void advertising_start_handler(void *p_event_data, uint16_t event_size)
 {
   advertising_start(false);
 }
+
 /**@brief Function for handling Peer Manager events.
  *
  * @param[in] p_evt  Peer Manager event.
@@ -244,61 +236,6 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
         default:
             break;
     }
-}
-
-
-/**@brief Function for performing power level measurement and updating the Power Level characteristic
- *        in Battery Service.
- */
-static uint8_t pl = 100;
-
-static void power_level_update(void)
-{
-    ret_code_t err_code;
-    uint8_t  power_level;
-
-    power_level = pl;
-    pl--;
-    if (pl == 0)
-      pl = 100;
-
-    err_code = ble_bas_battery_level_update(&m_bas, power_level, BLE_CONN_HANDLE_ALL);
-    if ((err_code != NRF_SUCCESS) &&
-        (err_code != NRF_ERROR_INVALID_STATE) &&
-        (err_code != NRF_ERROR_RESOURCES) &&
-        (err_code != NRF_ERROR_BUSY) &&
-        (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
-       )
-    {
-        APP_ERROR_HANDLER(err_code);
-    }
-}
-
-
-/**@brief Function for handling the Power Level measurement timer timeout.
- *
- * @details This function will be called each time the power level measurement timer expires.
- *
- * @param[in] p_context  Pointer used for passing some arbitrary information (context) from the
- *                       app_start_timer() call to the timeout handler.
- */
-static void power_level_meas_timeout_handler(void * p_context)
-{
-//SEGGER_RTT_printf(0,"timeout\n");
-    UNUSED_PARAMETER(p_context);
-   power_level_update();
-    //    if (m_conn_handle != BLE_CONN_HANDLE_INVALID)
-    //    {
-//              if(USE_EMG)
-//              {
-//              read_sensor_data(&m_emg_dev, BLE_BIOSIG_DEV_TYPE_EMG);
-//              }
-//              if(USE_EEG)
-//              {
-//              read_sensor_data(&m_eeg_dev, BLE_BIOSIG_DEV_TYPE_EEG);
-//              }
-//              
-       // }
 }
 
 /**@brief Function for handling the Startup Delay timer timeout.
@@ -380,7 +317,6 @@ static void rtc_handler(nrfx_rtc_int_type_t int_type)
         nrf_rtc_event_clear(m_rtc.p_reg, NRF_RTC_EVENT_TICK);
         nrfx_rtc_tick_disable(&m_rtc);
         nrfx_rtc_counter_clear(&m_rtc);
-//        rtc_timestamp_get();  //display current
         m_rtc_init = true;
     }
 }
@@ -424,12 +360,6 @@ static void timers_init(void)
 
     // Initialize timer module.
     err_code = app_timer_init();
-    APP_ERROR_CHECK(err_code);
-
-    // Create timers.
-    err_code = app_timer_create(&m_power_level_timer_id,
-                                APP_TIMER_MODE_REPEATED,
-                                power_level_meas_timeout_handler);
     APP_ERROR_CHECK(err_code);
 
     err_code = app_timer_create(&m_startup_delay_timer_id,
@@ -517,7 +447,6 @@ static void services_init(void)
 {
     ret_code_t         err_code;
     ble_biosig_svc_init_t     biosig_svc_init;
-    ble_bas_init_t     bas_init;
     ble_dis_init_t     dis_init;
     nrf_ble_qwr_init_t qwr_init = {0};
 
@@ -536,45 +465,29 @@ static void services_init(void)
 
     err_code = ble_biosig_svc_init(&m_biosig_svc, &biosig_svc_init);
     APP_ERROR_CHECK(err_code);
-
-    // Initialize Battery Service.
-    memset(&bas_init, 0, sizeof(bas_init));
-
-    bas_init.evt_handler          = NULL;
-    bas_init.support_notification = true;
-    bas_init.p_report_ref         = NULL;
-    bas_init.initial_batt_level   = 100;
-
-    // Here the sec level for the Battery Service can be changed/increased.
-    bas_init.bl_rd_sec        = SEC_OPEN;
-    bas_init.bl_cccd_wr_sec   = SEC_OPEN;
-    bas_init.bl_report_rd_sec = SEC_OPEN;
-
-    err_code = ble_bas_init(&m_bas, &bas_init);
-    APP_ERROR_CHECK(err_code);
-
-    // Initialize Device Information Service.
-    memset(&dis_init, 0, sizeof(dis_init));
-
-    ble_srv_ascii_to_utf8(&dis_init.manufact_name_str, (char *)MANUFACTURER_NAME);
-
-    dis_init.dis_char_rd_sec = SEC_OPEN;
-
-    err_code = ble_dis_init(&dis_init);
-    APP_ERROR_CHECK(err_code);
+    
+//    // Initialize Device Information Service.
+//    memset(&dis_init, 0, sizeof(dis_init));
+//
+//    ble_srv_ascii_to_utf8(&dis_init.manufact_name_str, (char *)MANUFACTURER_NAME);
+//
+//    dis_init.dis_char_rd_sec = SEC_OPEN;
+//
+//    err_code = ble_dis_init(&dis_init);
+//    APP_ERROR_CHECK(err_code);
 }
 
 
 /**@brief Function for starting application timers.
  */
-static void application_timers_start(void)
-{
-    ret_code_t err_code;
-
-    // Start application timers.
-    err_code = app_timer_start(m_power_level_timer_id, POWER_LEVEL_MEAS_INTERVAL, NULL);
-    APP_ERROR_CHECK(err_code);
-}
+//static void application_timers_start(void)
+//{
+//    ret_code_t err_code;
+//
+//    // Start application timers.
+//    err_code = app_timer_start(m_power_level_timer_id, POWER_LEVEL_MEAS_INTERVAL, NULL);
+//    APP_ERROR_CHECK(err_code);
+//}
 
 
 /**@brief Function for handling the Connection Parameters Module.
@@ -991,103 +904,6 @@ static void idle_state_handle(void)
     }
 }
 
-
-//static void eeg_data_avail_handler()
-//{
-//    m_eeg_data_avail = true;
-//}
-//
-//static void emg_data_avail_handler()
-//{
-//    m_emg_data_avail = true;
-//}
-
-
-//static void read_sensor_data(max30003_dev_t *dev, ble_biosig_svc_dev_type dev_type)
-//{
-//    uint32_t ecgFIFO, ETAG, status;
-//    int16_t ecgSample;
-//    int16_t ecgSamples[32];
-//    uint64_t last_sample_timestamp;
-//    uint8_t num_samples = 0;
-//    uint8_t i;
-//    ret_code_t ret;
-//    ret_code_t err_code;
-//    bool retry_ble_send = false;
-//  
-//    /* Read back ECG samples from the FIFO */
-//    ret = max30003_get_status(dev, &status);      // Read the STATUS register
-//
-//    // Check if EINT interrupt asserted
-//    if ((status & EINT_STATUS) == EINT_STATUS) 
-//    {     
-//        last_sample_timestamp = rtc_timestamp_get();
-//        
-//        do 
-//        {
-//            max30003_get_fifo(dev, &ecgFIFO);                        // Read FIFO
-//
-//            ecgSample = (ecgFIFO >> 8) & 0xFFFF;   // Isolate voltage data
-//            ETAG = (ecgFIFO >> 3) & ETAG_BITS;     // Isolate ETAG
-//    
-//            ecgSamples[num_samples] = ecgSample;
-////            if (num_samples == 15) {SEGGER_RTT_printf(0, "Device : %d, No. %d, Signal: %d\n\r", dev_type, num_samples, ecgSample);}
-//            num_samples++;
-//        } 
-//        while (ETAG == FIFO_VALID_SAMPLE || ETAG == FIFO_FAST_SAMPLE);   // Check that sample is not last sample in FIFO              
-//
-////        SEGGER_RTT_printf(0, "ETAG: %d\r\n", ETAG);
-////        SEGGER_RTT_printf(0, "%d samples read from FIFO\r\n", num_samples);
-//    
-//        // Check if FIFO has overflowed
-//        if(ETAG == FIFO_OVF)
-//        {                  
-//            max30003_reset_fifo(dev); // Reset FIFO
-// //           SEGGER_RTT_printf(0, "FIFO overflow!\r\n");
-//        }
-//
-//#ifndef SEND_BLE
-//        // Send and display received samples
-//
-//            // send sample over BLE
-//            err_code = ble_biosig_svc_measurement_send(&m_biosig_svc, last_sample_timestamp, 
-//                                    num_samples, ecgSamples, dev_type);
-//
-//            while (err_code == NRF_ERROR_RESOURCES) 
-//            {
-//                nrf_delay_ms(100);
-//                retry_ble_send = true;
-////                SEGGER_RTT_printf(0, "SEND STATUS TRYING\r\n");
-//                err_code = ble_biosig_svc_measurement_send(&m_biosig_svc, last_sample_timestamp, 
-//                                    num_samples, ecgSamples, dev_type);
-//            }
-//            if ((err_code != NRF_SUCCESS) &&
-//                (err_code != NRF_ERROR_INVALID_STATE) &&
-//                (err_code != NRF_ERROR_RESOURCES) &&
-//                (err_code != NRF_ERROR_BUSY) &&
-//                (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
-//               )
-//            {
-//                APP_ERROR_HANDLER(err_code);
-//            }
-//
-//
-//#endif
-//    }
-//    else if ((status & EOVF_STATUS) == EOVF_STATUS)
-//    {
-//        max30003_reset_fifo(dev); // Reset FIFO
-//    }
-//
-//    // Check if FIFO overflowed while we were sending BLE data, if so reset the FIFO
-//    ret = max30003_get_status(dev, &status);      // Read the STATUS register
-//    if ((status & EOVF_STATUS) == EOVF_STATUS)
-//    {
-//        max30003_reset_fifo(dev); // Reset FIFO
-//    }
-//}
-
-
 int8_t spi_read (uint8_t dev_id, uint8_t reg_addr, uint8_t *temp_buf, uint16_t temp_len)
 {
 
@@ -1144,7 +960,7 @@ int8_t bmi160_init_and_config(struct bmi160_dev *dev)
     uint8_t data = 0;
 
     dev->accel_cfg.odr = BMI160_ACCEL_ODR_1600HZ;  // There is a problem setting ODR to 1600 Hz. If using 1600 Hz, do in set_accel_conf() in bmi160.c;
-    dev->accel_cfg.range = BMI160_ACCEL_RANGE_4G; //Not sure why 2G does not work. ADC value range wrong.
+    dev->accel_cfg.range = BMI160_ACCEL_RANGE_4G; //Not sure why 2G does not work. 
     dev->accel_cfg.bw = BMI160_ACCEL_BW_NORMAL_AVG4;
     dev->accel_cfg.power = BMI160_ACCEL_NORMAL_MODE;
     dev->gyro_cfg.power = BMI160_GYRO_SUSPEND_MODE;    
@@ -1174,9 +990,9 @@ int8_t bmi160_init_and_config(struct bmi160_dev *dev)
 }
 
 
-uint64_t prev = 0;
-uint32_t flush = 0;
-uint32_t cnt = 0;  
+uint64_t prev_timestamp = 0;
+uint32_t int_cnt = 0;
+uint32_t flush = 0; 
 int8_t read_sensor_accel_headerless(struct bmi160_dev *dev)
 {
      int8_t rslt = BMI160_OK;
@@ -1193,57 +1009,26 @@ int8_t read_sensor_accel_headerless(struct bmi160_dev *dev)
      uint8_t accel_index;
      
      last_sample_timestamp = rtc_timestamp_get();
-     uint16_t delta = 38000000000/(last_sample_timestamp - prev);
-     prev = last_sample_timestamp;
-//     SEGGER_RTT_printf(0,"%d Hz\n", delta);
-
-//     SEGGER_RTT_printf(0,"fifo before read: ");
+     //uint16_t sample_rate = 38000000000/(last_sample_timestamp - prev_timestamp);    
+     //SEGGER_RTT_printf(0,"%d Hz\n",  sample_rate);
+     //prev_timestamp = last_sample_timestamp;
+   
      rslt = bmi160_get_fifo_data(dev);
      rslt = bmi160_extract_accel(accel_data, &accel_frames_req, dev);
- //    SEGGER_RTT_printf(0,"%d, %d, %d\n", accel_data[0].x, accel_data[0].y, accel_data[0].z);     
-//     SEGGER_RTT_printf(0,"fifo after read: ");
-
-//    for (int k = 0; k<WATERMARK_FRAMES; k++)
-//    {
-//      SEGGER_RTT_printf(0,"%d: %d, %d, %d\n", k, accel_data[k].x, accel_data[k].y, accel_data[k].z);
-//      }
+     //SEGGER_RTT_printf(0,"%d, %d, %d\n", accel_data[0].x, accel_data[0].y, accel_data[0].z);     
       
+     // Send accl data by BLE
      err_code = ble_biosig_svc_measurement_send(&m_biosig_svc, last_sample_timestamp,
                                     WATERMARK_FRAMES, accel_data);
-//     if (err_code == NRF_ERROR_RESOURCES)
-//     {
-//            while (err_code == NRF_ERROR_RESOURCES) 
-//            {
-//               // nrf_delay_ms(25);
-//                retry_ble_send = true;
-//                SEGGER_RTT_printf(0, "SEND STATUS TRYING\r\n");
-//                err_code = ble_biosig_svc_measurement_send(&m_biosig_svc, last_sample_timestamp, 
-//                                    WATERMARK_FRAMES, accel_data);
-//            }
-//            if ((err_code != NRF_SUCCESS) &&
-//                (err_code != NRF_ERROR_INVALID_STATE) &&
-//                (err_code != NRF_ERROR_RESOURCES) &&
-//                (err_code != NRF_ERROR_BUSY) &&
-//                (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
-//               )
-//            {
-//                APP_ERROR_HANDLER(err_code);
-//            }
-////            uint16_t data3 = 0;
-////            SEGGER_RTT_printf(0,"after resource error\n");
-////            get_fifo_byte_counter(&data3, dev);
-//                        
-//             bmi160_set_fifo_flush(dev);
-//             SEGGER_RTT_printf(0,"interrupt %d, flushed %d\n", cnt, flush);
-//             flush++;
-//     }
-
-     if (err_code == 1000) { // 1000 means packet resent due to ble resource error, there is fifo overrun above watermark, need to flush fifo to restart watermark interrupt.
-       get_fifo_byte_counter(&fifo_level, dev);
+     
+     // NRF_ERROR_RESOURCES causes fifo to run above watermark
+     // Must flush fifo to re-trigger watermark interrupt.
+     if (err_code == NRF_ERROR_RESOURCES) {       
+        get_fifo_byte_counter(&fifo_level, dev);
       // SEGGER_RTT_printf(0, "fifo level: %d\n", fifo_level);
        if (fifo_level >= WATERMARK_FRAMES * BYTES_PER_FRAME - 2) {
          bmi160_set_fifo_flush(dev);
-     //    SEGGER_RTT_printf(0, "interrupt %d, flushed %d\n", cnt, flush);
+         //SEGGER_RTT_printf(0, "interrupt %d, flushed %d\n", int_cnt, flush);
          flush++;
        }
      }
@@ -1254,8 +1039,8 @@ int8_t read_sensor_accel_headerless(struct bmi160_dev *dev)
 static void bmi160_int_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {   
     watermark_triggered = true;
- //   SEGGER_RTT_printf(0,"int. %d\n", cnt);
-    cnt++;
+ //   SEGGER_RTT_printf(0,"int. %d\n", int_cnt);
+    int_cnt++;
 }
 
 void bmi160_init_intb_gpio(struct bmi160_dev *dev)
@@ -1285,14 +1070,13 @@ void bmi160_init_intb_gpio(struct bmi160_dev *dev)
 int main(void)
 {
     bool erase_bonds;
-//SEGGER_RTT_printf(0,"1\n");
+
     // Initialize timers
     log_init();
     timers_init();
-//SEGGER_RTT_printf(0,"2\n");
+
     // Delay startup to allow power harvesting to ramp up
     lfclk_request();  //turn on here because we need it before softdevice is started
-//    SEGGER_RTT_printf(0,"3\n");
     m_startup_delay = true;
     ret_code_t err_code = app_timer_start(m_startup_delay_timer_id, STARTUP_DELAY, NULL);
     APP_ERROR_CHECK(err_code);
@@ -1303,14 +1087,10 @@ int main(void)
     }
 
     // Remainder of initialization
-//    SEGGER_RTT_printf(0,"4\n");
     rtc_config();
     buttons_leds_init(&erase_bonds);
-//    SEGGER_RTT_printf(0,"5\n");
     power_management_init();
-//    SEGGER_RTT_printf(0,"6\n");
     ble_stack_init();
-//    SEGGER_RTT_printf(0,"7\n");
     sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);
     gap_params_init();
     gatt_init();
@@ -1318,10 +1098,7 @@ int main(void)
     services_init();
     conn_params_init();
     peer_manager_init();
-    // Start execution.
-    NRF_LOG_INFO("EEG/EMG monitoring started.");
-//    SEGGER_RTT_printf(0,"here\n");
-    application_timers_start();
+    //application_timers_start();
     advertising_start(erase_bonds);
     // wait for RTC to finish initializing
     while (!m_rtc_init) 
@@ -1332,8 +1109,7 @@ int main(void)
     spi_init();
     bmi160_init_and_config(&sensor);
     bmi160_init_intb_gpio(&sensor);
-    bmi160_set_fifo_flush(&sensor);
-    
+    bmi160_set_fifo_flush(&sensor);    
     watermark_triggered = false;
     
     // Enter main loop.
@@ -1343,9 +1119,6 @@ int main(void)
         watermark_triggered = false;
         
       }
-//      if (m_conn_handle != BLE_CONN_HANDLE_INVALID) {
-//      }
-
       idle_state_handle();
     }
 }

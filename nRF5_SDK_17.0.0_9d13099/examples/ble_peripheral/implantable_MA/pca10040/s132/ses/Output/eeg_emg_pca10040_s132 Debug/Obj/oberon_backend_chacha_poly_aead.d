@@ -1,5 +1,5 @@
 Output/eeg_emg_pca10040_s132\ Debug/Obj/oberon_backend_chacha_poly_aead.o: \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\backend\oberon\oberon_backend_chacha_poly_aead.c \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\backend\oberon\oberon_backend_chacha_poly_aead.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdbool.h \
@@ -29,7 +29,7 @@ Output/eeg_emg_pca10040_s132\ Debug/Obj/oberon_backend_chacha_poly_aead.o: \
  ../../../../../../components/softdevice/s132/headers/nrf_svc.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
  ../../../../../../components/libraries/util/nrf_assert.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\backend\oberon\oberon_backend_chacha_poly_aead.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\backend\oberon\oberon_backend_chacha_poly_aead.h \
  ../../../../../../components/libraries/crypto/nrf_crypto_aead_shared.h \
  ../../../../../../components/libraries/crypto/nrf_crypto_types.h \
  ../../../../../../external/nrf_oberon/include/ocrypto_chacha20_poly1305.h \

@@ -1,5 +1,5 @@
 Output/eeg_emg_pca10040_s132\ Debug/Obj/oberon_backend_ecdsa.o: \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\backend\oberon\oberon_backend_ecdsa.c \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\backend\oberon\oberon_backend_ecdsa.c \
  ../config/sdk_config.h \
  ../../../../../../components/libraries/util/nordic_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdint.h \
@@ -66,6 +66,6 @@ Output/eeg_emg_pca10040_s132\ Debug/Obj/oberon_backend_ecdsa.o: \
  ../../../../../../components/libraries/crypto/nrf_crypto_ecdsa_shared.h \
  ../../../../../../components/libraries/crypto/backend/micro_ecc/micro_ecc_backend_ecdsa.h \
  ../../../../../../components/libraries/crypto/backend/optiga/optiga_backend_ecdsa.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\backend\oberon\oberon_backend_eddsa.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\backend\oberon\oberon_backend_eddsa.h \
  ../../../../../../components/libraries/crypto/nrf_crypto_eddsa_shared.h \
  ../../../../../../external/nrf_oberon/include/ocrypto_ecdsa_p256.h

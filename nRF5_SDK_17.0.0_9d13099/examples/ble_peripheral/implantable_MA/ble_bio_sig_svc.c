@@ -229,7 +229,7 @@ uint32_t ble_biosig_svc_measurement_send(ble_biosig_t *p_biosig_svc, uint64_t ti
                 nrf_pwr_mgmt_run();
             }
             err_code = sd_ble_gatts_hvx(p_biosig_svc->conn_handle, &hvx_params);
-            return 1000; //means needing to flush fifo in order to restart watermark interrupt
+            return NRF_ERROR_RESOURCES; 
         }
     }
     else

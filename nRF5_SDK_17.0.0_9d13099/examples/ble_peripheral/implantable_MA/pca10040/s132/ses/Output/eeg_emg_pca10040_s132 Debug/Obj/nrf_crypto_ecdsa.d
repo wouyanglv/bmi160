@@ -1,15 +1,15 @@
 Output/eeg_emg_pca10040_s132\ Debug/Obj/nrf_crypto_ecdsa.o: \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdsa.c \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_error.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdsa.c \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_error.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdint.h \
  ../../../../../../components/softdevice/s132/headers/nrf_error.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecc.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecc.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stddef.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/__crossworks.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecc_shared.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecc_shared.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdbool.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecc_backend.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecc_backend.h \
  ../config/sdk_config.h \
  ../../../../../../components/libraries/util/nordic_common.h \
  ../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_ecc.h \
@@ -19,9 +19,9 @@ Output/eeg_emg_pca10040_s132\ Debug/Obj/nrf_crypto_ecdsa.o: \
  ../../../../../../components/libraries/crypto/nrf_crypto_ecc_shared.h \
  ../../../../../../components/libraries/crypto/backend/micro_ecc/micro_ecc_backend_ecc.h \
  ../../../../../../components/libraries/crypto/backend/optiga/optiga_backend_ecc.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdsa.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdsa_shared.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdsa_backend.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdsa.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdsa_shared.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdsa_backend.h \
  ../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_ecdsa.h \
  ../../../../../../components/libraries/crypto/backend/cc310_bl/cc310_bl_backend_ecdsa.h \
  ../../../../../../components/libraries/crypto/backend/mbedtls/mbedtls_backend_ecdsa.h \
@@ -29,7 +29,7 @@ Output/eeg_emg_pca10040_s132\ Debug/Obj/nrf_crypto_ecdsa.o: \
  ../../../../../../components/libraries/crypto/nrf_crypto_ecdsa_shared.h \
  ../../../../../../components/libraries/crypto/backend/micro_ecc/micro_ecc_backend_ecdsa.h \
  ../../../../../../components/libraries/crypto/backend/optiga/optiga_backend_ecdsa.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_mem.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_mem.h \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/string.h \
  ../../../../../../components/libraries/util/nordic_common.h \
@@ -53,7 +53,7 @@ Output/eeg_emg_pca10040_s132\ Debug/Obj/nrf_crypto_ecdsa.o: \
  ../../../../../../components/softdevice/s132/headers/nrf_svc.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
  ../../../../../../components/libraries/util/nrf_assert.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_types.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_types.h \
  ../../../../../../components/libraries/util/sdk_alloca.h \
  ../../../../../../components/libraries/util/app_util.h \
  ../../../../../../components/libraries/util/sdk_macros.h

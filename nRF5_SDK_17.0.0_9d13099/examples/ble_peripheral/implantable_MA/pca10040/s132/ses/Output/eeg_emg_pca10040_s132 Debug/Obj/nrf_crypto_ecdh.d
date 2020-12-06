@@ -1,10 +1,10 @@
 Output/eeg_emg_pca10040_s132\ Debug/Obj/nrf_crypto_ecdh.o: \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdh.c \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_error.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdh.c \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_error.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdint.h \
  ../../../../../../components/softdevice/s132/headers/nrf_error.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_mem.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_mem.h \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/stdbool.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52a/include/string.h \
@@ -32,11 +32,11 @@ Output/eeg_emg_pca10040_s132\ Debug/Obj/nrf_crypto_ecdh.o: \
  ../../../../../../components/softdevice/s132/headers/nrf_svc.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
  ../../../../../../components/libraries/util/nrf_assert.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_types.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_types.h \
  ../../../../../../components/libraries/util/sdk_alloca.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecc.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecc_shared.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecc_backend.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecc.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecc_shared.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecc_backend.h \
  ../../../../../../components/libraries/util/nordic_common.h \
  ../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_ecc.h \
  ../../../../../../components/libraries/crypto/backend/cc310_bl/cc310_bl_backend_ecc.h \
@@ -45,9 +45,9 @@ Output/eeg_emg_pca10040_s132\ Debug/Obj/nrf_crypto_ecdh.o: \
  ../../../../../../components/libraries/crypto/nrf_crypto_ecc_shared.h \
  ../../../../../../components/libraries/crypto/backend/micro_ecc/micro_ecc_backend_ecc.h \
  ../../../../../../components/libraries/crypto/backend/optiga/optiga_backend_ecc.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdh.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdh_shared.h \
- C:\Users\Rogers\ Group\Dropbox\ (MIT)\Wei\ Ouyang\ -\ BLE\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdh_backend.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdh.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdh_shared.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\components\libraries\crypto\nrf_crypto_ecdh_backend.h \
  ../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_ecdh.h \
  ../../../../../../components/libraries/crypto/backend/cc310_bl/cc310_bl_backend_ecdh.h \
  ../../../../../../components/libraries/crypto/backend/mbedtls/mbedtls_backend_ecdh.h \
