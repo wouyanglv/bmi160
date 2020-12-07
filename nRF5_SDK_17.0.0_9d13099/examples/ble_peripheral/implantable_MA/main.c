@@ -124,7 +124,7 @@
 #define TIMESTAMP_PRECISION   1000000000
 #define RTC_BIT_WIDTH         24
 
-#define WATERMARK_FRAMES  38
+#define WATERMARK_FRAMES  38                      /* FIFO level that triggers interupt */
 #define BYTES_PER_FRAME 6
 
 
