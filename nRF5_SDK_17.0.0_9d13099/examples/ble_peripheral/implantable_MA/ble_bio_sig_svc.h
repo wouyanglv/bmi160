@@ -88,6 +88,11 @@
 extern "C" {
 #endif
 
+#define MA_BASE_UUID  {{0x9b, 0x05, 0x00, 0x00, 0x6f, 0x92, 0x40, 0xda, 0xbf, 0xfe, 0xb0, 0x80, 0x9c, 0x5d, 0xd2, 0xa2}}
+#define BLE_UUID_MA_SERVICE  0x0A00 
+#define BLE_UUID_MA_MEASUREMENT_CHAR 0x0B00
+
+
 /**@brief   Macro for defining a ble_biosig_svc instance.
  *
  * @param   _name   Name of the instance.
@@ -137,6 +142,7 @@ typedef struct
 /**@brief BioSignal Service structure. This contains various status information for the service. */
 struct ble_biosig_s
 {
+    uint8_t                         uuid_type;  
     ble_biosig_svc_evt_handler_t evt_handler;                                          /**< Event handler to be called for handling events in the Heart Rate Service. */
     uint16_t                     service_handle;                                       /**< Handle of BioSignal Service (as provided by the BLE stack). */
     ble_gatts_char_handles_t     biosig_handles;                                       /**< Handles related to the BioSignal Measurement characteristic. */

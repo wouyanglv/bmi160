@@ -73,7 +73,6 @@
 "Output/eeg_emg_pca10040_s132 Debug/Obj/nrf_crypto_rng.o"
 "Output/eeg_emg_pca10040_s132 Debug/Obj/nrf_crypto_shared.o"
 "Output/eeg_emg_pca10040_s132 Debug/Obj/main.o"
-"Output/eeg_emg_pca10040_s132 Debug/Obj/i2c.o"
 "Output/eeg_emg_pca10040_s132 Debug/Obj/spi.o"
 "Output/eeg_emg_pca10040_s132 Debug/Obj/bmi160.o"
 "Output/eeg_emg_pca10040_s132 Debug/Obj/ble_bio_sig_svc.o"

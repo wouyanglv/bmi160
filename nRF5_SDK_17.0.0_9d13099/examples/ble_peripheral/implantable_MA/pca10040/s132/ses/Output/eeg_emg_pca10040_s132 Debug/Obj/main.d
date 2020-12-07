@@ -60,13 +60,12 @@ Output/eeg_emg_pca10040_s132\ Debug/Obj/main.o: \
  ../../../../../../components/libraries/util/nrf_assert.h \
  ../../../../../../components/ble/ble_advertising/ble_advertising.h \
  ../../../../../../components/softdevice/s132/headers/ble_gattc.h \
- ../../../../../../components/ble/ble_services/ble_bas/ble_bas.h \
+ C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\examples\ble_peripheral\implantable_MA\ble_bio_sig_svc.h \
  ../../../../../../components/softdevice/common/nrf_sdh_ble.h \
  ../../../../../../components/libraries/experimental_section_vars/nrf_section_iter.h \
  ../../../../../../components/libraries/experimental_section_vars/nrf_section.h \
  ../../../../../../components/libraries/util/nrf_assert.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
- C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\examples\ble_peripheral\implantable_MA\ble_bio_sig_svc.h \
  ../../../../../../components/ble/nrf_ble_gatt/nrf_ble_gatt.h \
  C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\examples\ble_peripheral\implantable_MA\bmi160.h \
  C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\examples\ble_peripheral\implantable_MA\bmi160_defs.h \

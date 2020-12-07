@@ -59,7 +59,6 @@
 #include "ble_srv_common.h"
 #include "ble_advdata.h"
 #include "ble_advertising.h"
-#include "ble_bas.h"
 #include "ble_bio_sig_svc.h"
 #include "ble_dis.h"
 #include "ble_conn_params.h"
@@ -84,11 +83,8 @@
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
-
 #include "spi.h"
-
 #include "bmi160.h"
-
 
 
 #define DEVICE_NAME                         "Implantable_MA"                            /**< Name of device. Will be included in the advertising data. */
@@ -100,8 +96,7 @@
 #define APP_BLE_CONN_CFG_TAG                1                                       /**< A tag identifying the SoftDevice BLE configuration. */
 #define APP_BLE_OBSERVER_PRIO               3                                       /**< Application's BLE observer priority. You shouldn't need to modify this value. */
 
-#define POWER_LEVEL_MEAS_INTERVAL           APP_TIMER_TICKS(3)                   /**< Power level measurement interval (ticks). */
-#define STARTUP_DELAY                       APP_TIMER_TICKS(2000)                   /**< 2 second startup delay. */
+#define STARTUP_DELAY                       APP_TIMER_TICKS(3000)                   /**< 3 second startup delay. */
 
 #define MIN_CONN_INTERVAL                   MSEC_TO_UNITS(7.5, UNIT_1_25_MS)        /**< Minimum acceptable connection interval (0.4 seconds). */
 #define MAX_CONN_INTERVAL                   MSEC_TO_UNITS(60, UNIT_1_25_MS)        /**< Maximum acceptable connection interval (0.65 second). */
@@ -144,18 +139,16 @@ static uint16_t m_conn_handle         = BLE_CONN_HANDLE_INVALID;    /**< Handle 
 
 static ble_uuid_t m_adv_uuids[] =                                   /**< Universally unique service identifiers. */
 {
-    {BLE_UUID_HEART_RATE_SERVICE,           BLE_UUID_TYPE_BLE},
+    {BLE_UUID_MA_SERVICE,           BLE_UUID_TYPE_BLE},
 };
 
 static bool             m_startup_delay;
-
 
 struct bmi160_dev sensor;
 struct bmi160_fifo_frame fifo_frame;
 struct bmi160_cfg m_accel_cfg;
 static bool watermark_triggered;
-static uint8_t fifo_buff[WATERMARK_FRAMES * BYTES_PER_FRAME];
-     
+static uint8_t fifo_buff[WATERMARK_FRAMES * BYTES_PER_FRAME];    
 
 static const nrfx_rtc_t   m_rtc = NRFX_RTC_INSTANCE(2); /**< Declaring an instance of nrf_drv_rtc for RTC2 (RTC0 is used by BLE, RTC1 used by app timer). */
 static uint64_t           m_rtc_overflows;
@@ -406,14 +399,24 @@ static void gap_params_init(void)
  */
 static void gatt_evt_handler(nrf_ble_gatt_t * p_gatt, nrf_ble_gatt_evt_t const * p_evt)
 {
-    if (p_evt->evt_id == NRF_BLE_GATT_EVT_ATT_MTU_UPDATED)
+    switch (p_evt->evt_id)
     {
-        NRF_LOG_INFO("GATT ATT MTU on connection 0x%x changed to %d.",
-                     p_evt->conn_handle,
-                     p_evt->params.att_mtu_effective);
+        case NRF_BLE_GATT_EVT_ATT_MTU_UPDATED:
+        {
+            NRF_LOG_INFO("ATT MTU exchange completed. MTU set to %u bytes.",
+                         p_evt->params.att_mtu_effective);
+            SEGGER_RTT_printf(0,"ATT MTU exchange completed. MTU set to %u bytes.",
+                         p_evt->params.att_mtu_effective);
+        } break;
+
+        case NRF_BLE_GATT_EVT_DATA_LENGTH_UPDATED:
+        {
+            NRF_LOG_INFO("Data length updated to %u bytes.", p_evt->params.data_length);
+            SEGGER_RTT_printf(0,"Data length updated to %u bytes.", p_evt->params.data_length);
+        } break;
     }
 
-    ble_hrs_on_gatt_evt(&m_biosig_svc, p_evt);
+    ble_biosig_svc_on_gatt_evt(&m_biosig_svc, p_evt);
 }
 
 
@@ -702,11 +705,13 @@ static void ble_stack_init(void)
     ret_code_t err_code;
     err_code = nrf_sdh_enable_request();
     APP_ERROR_CHECK(err_code);
+
     // Configure the BLE stack using the default settings.
     // Fetch the start address of the application RAM.
     uint32_t ram_start = 0;
     err_code = nrf_sdh_ble_default_cfg_set(APP_BLE_CONN_CFG_TAG, &ram_start);
     APP_ERROR_CHECK(err_code);
+
     ble_cfg_t ble_cfg;
     memset(&ble_cfg, 0, sizeof ble_cfg);
     ble_cfg.conn_cfg.conn_cfg_tag = BLE_CONN_CFG_GATTS;
@@ -714,10 +719,15 @@ static void ble_stack_init(void)
     
     err_code = sd_ble_cfg_set(BLE_CONN_CFG_GATTS, &ble_cfg, ram_start);
     APP_ERROR_CHECK(err_code);
-    
 
     // Enable BLE stack.
     err_code = nrf_sdh_ble_enable(&ram_start);
+    APP_ERROR_CHECK(err_code);
+
+    ble_opt_t  opt;
+    memset(&opt, 0x00, sizeof(opt));
+    opt.common_opt.conn_evt_ext.enable = 1;
+    err_code = sd_ble_opt_set(BLE_COMMON_OPT_CONN_EVT_EXT, &opt);
     APP_ERROR_CHECK(err_code);
 
     // Register a handler for BLE events.

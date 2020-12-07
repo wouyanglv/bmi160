@@ -146,6 +146,7 @@ uint32_t ble_biosig_svc_init(ble_biosig_t *p_biosig_svc, ble_biosig_svc_init_t c
 {
     uint32_t              err_code;
     ble_uuid_t            ble_uuid;
+    ble_uuid128_t         ma_base_uuid = MA_BASE_UUID;
     ble_add_char_params_t add_char_params;
     uint8_t               encoded_initial_biosig[MAX_BIOSIG_LEN];
 
@@ -155,7 +156,17 @@ uint32_t ble_biosig_svc_init(ble_biosig_t *p_biosig_svc, ble_biosig_svc_init_t c
     p_biosig_svc->max_biosig_len              = MAX_BIOSIG_LEN;
 
     // Add service
-    BLE_UUID_BLE_ASSIGN(ble_uuid, BLE_UUID_HEART_RATE_SERVICE);
+    err_code = sd_ble_uuid_vs_add(&ma_base_uuid, &p_biosig_svc->uuid_type);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+
+    ble_uuid.type = p_biosig_svc->uuid_type;
+    ble_uuid.uuid = BLE_UUID_MA_SERVICE;
+
+
+    //BLE_UUID_BLE_ASSIGN(ble_uuid, BLE_UUID_HEART_RATE_SERVICE);
 
     err_code = sd_ble_gatts_service_add(BLE_GATTS_SRVC_TYPE_PRIMARY,
                                         &ble_uuid,
@@ -169,7 +180,7 @@ uint32_t ble_biosig_svc_init(ble_biosig_t *p_biosig_svc, ble_biosig_svc_init_t c
     // Add bio signal measurement characteristic
     memset(&add_char_params, 0, sizeof(add_char_params));
 
-    add_char_params.uuid              = BLE_UUID_HEART_RATE_MEASUREMENT_CHAR;
+    add_char_params.uuid              = BLE_UUID_MA_MEASUREMENT_CHAR;
     add_char_params.max_len           = MAX_BIOSIG_LEN;
     add_char_params.init_len          = biosignal_encode(p_biosig_svc, INITIAL_TIMESTAMP_BIOSIG, 38, initial_value_biosig, encoded_initial_biosig);
     add_char_params.p_init_value      = encoded_initial_biosig;
