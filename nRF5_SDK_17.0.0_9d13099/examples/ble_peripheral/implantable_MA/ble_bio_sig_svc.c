@@ -164,6 +164,7 @@ uint32_t ble_biosig_svc_init(ble_biosig_t *p_biosig_svc, ble_biosig_svc_init_t c
 
     ble_uuid.type = p_biosig_svc->uuid_type;
     ble_uuid.uuid = BLE_UUID_MA_SERVICE;
+    SEGGER_RTT_printf(0,"uuid type: %d\n", p_biosig_svc->uuid_type);
 
 
     //BLE_UUID_BLE_ASSIGN(ble_uuid, BLE_UUID_HEART_RATE_SERVICE);

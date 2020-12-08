@@ -93,12 +93,14 @@ static void on_hvx(ble_hrs_c_t * p_ble_hrs_c, const ble_evt_t * p_ble_evt)
     {
         NRF_LOG_DEBUG("Received HVX on link 0x%x, not associated to this instance. Ignore.",
                       p_ble_evt->evt.gattc_evt.conn_handle);
+        
         return;
     }
 
     NRF_LOG_DEBUG("Received HVX on link 0x%x, hrm_handle 0x%x",
     p_ble_evt->evt.gattc_evt.params.hvx.handle,
     p_ble_hrs_c->peer_hrs_db.hrm_handle);
+   
 
     // Check if this is a heart rate notification.
     if (p_ble_evt->evt.gattc_evt.params.hvx.handle == p_ble_hrs_c->peer_hrs_db.hrm_handle)
@@ -106,12 +108,12 @@ static void on_hvx(ble_hrs_c_t * p_ble_hrs_c, const ble_evt_t * p_ble_evt)
         ble_hrs_c_evt_t ble_hrs_c_evt;
         uint32_t        index = 0;
 
-        ble_hrs_c_evt.evt_type                    = BLE_HRS_C_EVT_HRM_NOTIFICATION;
+        ble_hrs_c_evt.evt_type                    = BLE_MAS_C_EVT_MAM_NOTIFICATION;
         ble_hrs_c_evt.conn_handle                 = p_ble_hrs_c->conn_handle;
         ble_hrs_c_evt.params.hrm.rr_intervals_cnt = 0;
         
         memcpy(ble_hrs_c_evt.params.hrm.hr_value, p_ble_evt->evt.gattc_evt.params.hvx.data, sizeof(p_ble_evt->evt.gattc_evt.params.hvx.data));
-        NRF_LOG_INFO(0,"%d\n",ble_hrs_c_evt.params.hrm.hr_value);
+        
        /* if (!(p_ble_evt->evt.gattc_evt.params.hvx.data[index++] & HRM_FLAG_MASK_HR_16BIT))
         {
             // 8-bit heart rate value received.
@@ -171,21 +173,21 @@ void ble_hrs_on_db_disc_evt(ble_hrs_c_t * p_ble_hrs_c, const ble_db_discovery_ev
 {
     // Check if the Heart Rate Service was discovered.
     if (p_evt->evt_type == BLE_DB_DISCOVERY_COMPLETE &&
-        p_evt->params.discovered_db.srv_uuid.uuid == BLE_UUID_HEART_RATE_SERVICE &&
-        p_evt->params.discovered_db.srv_uuid.type == BLE_UUID_TYPE_BLE)
+        p_evt->params.discovered_db.srv_uuid.uuid == BLE_UUID_MA_SERVICE &&
+        p_evt->params.discovered_db.srv_uuid.type == BLE_UUID_TYPE_VENDOR_BEGIN)
     {
         // Find the CCCD Handle of the Heart Rate Measurement characteristic.
         uint32_t i;
 
         ble_hrs_c_evt_t evt;
 
-        evt.evt_type    = BLE_HRS_C_EVT_DISCOVERY_COMPLETE;
+        evt.evt_type    = BLE_MAS_C_EVT_DISCOVERY_COMPLETE;
         evt.conn_handle = p_evt->conn_handle;
 
         for (i = 0; i < p_evt->params.discovered_db.char_count; i++)
         {
             if (p_evt->params.discovered_db.charateristics[i].characteristic.uuid.uuid ==
-                BLE_UUID_HEART_RATE_MEASUREMENT_CHAR)
+                BLE_UUID_MA_MEASUREMENT_CHAR)
             {
                 // Found Heart Rate characteristic. Store CCCD handle and break.
                 evt.params.peer_db.hrm_cccd_handle =
@@ -196,7 +198,7 @@ void ble_hrs_on_db_disc_evt(ble_hrs_c_t * p_ble_hrs_c, const ble_db_discovery_ev
             }
         }
 
-        NRF_LOG_DEBUG("Heart Rate Service discovered at peer.");
+        
         //If the instance has been assigned prior to db_discovery, assign the db_handles.
         if (p_ble_hrs_c->conn_handle != BLE_CONN_HANDLE_INVALID)
         {
@@ -218,10 +220,13 @@ uint32_t ble_hrs_c_init(ble_hrs_c_t * p_ble_hrs_c, ble_hrs_c_init_t * p_ble_hrs_
     VERIFY_PARAM_NOT_NULL(p_ble_hrs_c);
     VERIFY_PARAM_NOT_NULL(p_ble_hrs_c_init);
 
+    uint32_t      err_code;
     ble_uuid_t hrs_uuid;
+    ble_uuid128_t ma_base_uuid = MA_BASE_UUID;
+    err_code = sd_ble_uuid_vs_add(&ma_base_uuid, &p_ble_hrs_c->uuid_type);
 
-    hrs_uuid.type = BLE_UUID_TYPE_BLE;
-    hrs_uuid.uuid = BLE_UUID_HEART_RATE_SERVICE;
+    hrs_uuid.type = p_ble_hrs_c->uuid_type;
+    hrs_uuid.uuid = BLE_UUID_MA_SERVICE;
 
     p_ble_hrs_c->evt_handler                 = p_ble_hrs_c_init->evt_handler;
     p_ble_hrs_c->error_handler               = p_ble_hrs_c_init->error_handler;

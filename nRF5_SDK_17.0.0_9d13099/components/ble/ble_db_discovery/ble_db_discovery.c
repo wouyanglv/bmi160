@@ -308,6 +308,7 @@ static void on_srv_disc_completion(ble_db_discovery_t * p_db_discovery,
         NRF_LOG_DEBUG("Starting discovery of service with UUID 0x%x on connection handle 0x%x.",
                       p_srv_being_discovered->srv_uuid.uuid, conn_handle);
 
+
         uint32_t err_code;
 
         db_srv_disc_req.type                               = NRF_BLE_GQ_REQ_SRV_DISCOVERY;
@@ -942,6 +943,7 @@ static uint32_t discovery_start(ble_db_discovery_t * const p_db_discovery, uint1
 
     NRF_LOG_DEBUG("Starting discovery of service with UUID 0x%x on connection handle 0x%x.",
                   p_srv_being_discovered->srv_uuid.uuid, conn_handle);
+    
 
     db_srv_disc_req.type                               = NRF_BLE_GQ_REQ_SRV_DISCOVERY;
     db_srv_disc_req.params.gattc_srv_disc.start_handle = SRV_DISC_START_HANDLE;
@@ -950,6 +952,7 @@ static uint32_t discovery_start(ble_db_discovery_t * const p_db_discovery, uint1
     db_srv_disc_req.error_handler.cb                   = discovery_error_handler;
 
     err_code = nrf_ble_gq_item_add(mp_gatt_queue, &db_srv_disc_req, conn_handle);
+    
 
     if (err_code == NRF_SUCCESS)
     {
