@@ -85,6 +85,12 @@ extern "C" {
  * @param   _name   Name of the instance.
  * @hideinitializer
  */
+
+
+#define MA_BASE_UUID  {{0x9b, 0x05, 0x00, 0x00, 0x6f, 0x92, 0x40, 0xda, 0xbf, 0xfe, 0xb0, 0x80, 0x9c, 0x5d, 0xd2, 0xa2}}
+#define BLE_UUID_MA_SERVICE  0x0A00 
+#define BLE_UUID_MA_MEASUREMENT_CHAR 0x0B00
+
 #define BLE_HRS_C_DEF(_name)                                                                        \
 static ble_hrs_c_t _name;                                                                           \
 NRF_SDH_BLE_OBSERVER(_name ## _obs,                                                                 \
@@ -121,8 +127,8 @@ NRF_SDH_BLE_OBSERVERS(_name ## _obs,                     \
 /**@brief HRS Client event type. */
 typedef enum
 {
-    BLE_HRS_C_EVT_DISCOVERY_COMPLETE = 1,  /**< Event indicating that the Heart Rate Service was discovered at the peer. */
-    BLE_HRS_C_EVT_HRM_NOTIFICATION         /**< Event indicating that a notification of the Heart Rate Measurement characteristic was received from the peer. */
+    BLE_MAS_C_EVT_DISCOVERY_COMPLETE = 1,  /**< Event indicating that the Heart Rate Service was discovered at the peer. */
+    BLE_MAS_C_EVT_MAM_NOTIFICATION         /**< Event indicating that a notification of the Heart Rate Measurement characteristic was received from the peer. */
 } ble_hrs_c_evt_type_t;
 
 /** @} */
@@ -187,6 +193,7 @@ typedef void (* ble_hrs_c_evt_handler_t) (ble_hrs_c_t * p_ble_hrs_c, ble_hrs_c_e
  */
 struct ble_hrs_c_s
 {
+    uint8_t                   uuid_type;
     uint16_t                conn_handle;   /**< Connection handle, as provided by the SoftDevice. */
     hrs_db_t                peer_hrs_db;   /**< Handles related to HRS on the peer. */
     ble_hrs_c_evt_handler_t evt_handler;   /**< Application event handler to be called when there is an event related to the Heart Rate Service. */

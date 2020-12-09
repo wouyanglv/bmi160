@@ -359,6 +359,7 @@ static bool request_process(nrf_ble_gq_req_t const * const p_req, uint16_t conn_
             err_code = sd_ble_gattc_primary_services_discover(conn_handle,
                                                               p_req->params.gattc_srv_disc.start_handle,
                                                               &p_req->params.gattc_srv_disc.srvc_uuid);
+            NRF_LOG_DEBUG("GATTC Primary service discovry, err: %d\n", err_code);
             break;
 
         case NRF_BLE_GQ_REQ_CHAR_DISCOVERY:
@@ -490,6 +491,7 @@ ret_code_t nrf_ble_gq_item_add(nrf_ble_gq_t const * const p_gatt_queue,
 
     // Check if connection handle is registered and if GATT request is valid.
     conn_id = conn_handle_id_find(p_gatt_queue, conn_handle);
+    
     if ((p_req->type >= NRF_BLE_GQ_REQ_NUM) || (conn_id == p_gatt_queue->max_conns))
     {
         return NRF_ERROR_INVALID_PARAM;
