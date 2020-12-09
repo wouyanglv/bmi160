@@ -1,2 +1,0 @@
-Output/eeg_emg_pca10040_s132\ Debug/Obj/ses_startup_nrf_common.o: \
- C:\mechano-acoustic\mechano-acoustic-nrf-firmware\nRF5_SDK_17.0.0_9d13099\modules\nrfx\mdk\ses_startup_nrf_common.s
