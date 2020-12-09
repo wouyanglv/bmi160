@@ -610,6 +610,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 {
     ret_code_t err_code;
 
+
     switch (p_ble_evt->header.evt_id)
     {
         case BLE_GAP_EVT_CONNECTED:
@@ -636,6 +637,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
         case BLE_GAP_EVT_DISCONNECTED:
             NRF_LOG_INFO("Disconnected, reason %d.",
                           p_ble_evt->evt.gap_evt.params.disconnected.reason);
+
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
             SEGGER_RTT_printf(0, "Disconnected:%d\n",p_ble_evt->evt.gap_evt.params.disconnected.reason);
             break;
@@ -1126,8 +1128,7 @@ int main(void)
     while (1) {
       if (watermark_triggered) {
         read_sensor_accel_headerless(&sensor);
-        watermark_triggered = false;
-        
+        watermark_triggered = false;        
       }
       idle_state_handle();
     }
