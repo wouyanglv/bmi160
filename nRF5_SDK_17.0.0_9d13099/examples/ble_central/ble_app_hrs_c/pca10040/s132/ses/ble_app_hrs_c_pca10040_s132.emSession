@@ -1,0 +1,58 @@
+<!DOCTYPE CrossStudio_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints groups="Breakpoints" active_group="Breakpoints">
+  <BreakpointListItem trigger="" line="543" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="2" filename="../../../../../../external/mbedtls/library/aes.c" useHWbreakpoint="false"/>
+ </Breakpoints>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow bufferHeight="-1" addressSpace="" addressText="" bufferWidth="-1"/>
+ </FrameBufferWindow>
+ <Memory1/>
+ <Memory2/>
+ <Memory3/>
+ <Memory4/>
+ <Project>
+  <ProjectSessionItem path="ble_app_hrs_c_pca10040_s132"/>
+  <ProjectSessionItem path="ble_app_hrs_c_pca10040_s132;ble_app_hrs_c_pca10040_s132"/>
+  <ProjectSessionItem path="ble_app_hrs_c_pca10040_s132;ble_app_hrs_c_pca10040_s132;Application"/>
+  <ProjectSessionItem path="ble_app_hrs_c_pca10040_s132;ble_app_hrs_c_pca10040_s132;Board Definition"/>
+  <ProjectSessionItem path="ble_app_hrs_c_pca10040_s132;ble_app_hrs_c_pca10040_s132;Board Support"/>
+  <ProjectSessionItem path="ble_app_hrs_c_pca10040_s132;ble_app_hrs_c_pca10040_s132;None"/>
+  <ProjectSessionItem path="ble_app_hrs_c_pca10040_s132;ble_app_hrs_c_pca10040_s132;nRF_BLE"/>
+  <ProjectSessionItem path="ble_app_hrs_c_pca10040_s132;ble_app_hrs_c_pca10040_s132;nRF_BLE_Services"/>
+  <ProjectSessionItem path="ble_app_hrs_c_pca10040_s132;ble_app_hrs_c_pca10040_s132;nrf_cc310"/>
+  <ProjectSessionItem path="ble_app_hrs_c_pca10040_s132;ble_app_hrs_c_pca10040_s132;nRF_Oberon_Crypto"/>
+  <ProjectSessionItem path="ble_app_hrs_c_pca10040_s132;ble_app_hrs_c_pca10040_s132;nRF_SoftDevice"/>
+  <ProjectSessionItem path="ble_app_hrs_c_pca10040_s132;ble_app_hrs_c_pca10040_s132;nRF_TLS"/>
+ </Project>
+ <Register1/>
+ <Register2/>
+ <Register3/>
+ <Register4/>
+ <Threads>
+  <ThreadsWindow showLists=""/>
+ </Threads>
+ <TraceWindow>
+  <Trace enabled="Yes"/>
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never"/>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never"/>
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never"/>
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never"/>
+ </Watch4>
+ <Files>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="964" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="945" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="12033" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="12000" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="529" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../external/mbedtls/library/aes.c" selected="0" top="512" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="67" useTextEdit="1" openedFrom="C:/Users/Rogers Group/Desktop/nRF5_SDK_17.0.0_9d13099/external/mbedtls/library/aes.c" useBinaryEdit="0" left="0" path="../../../../../../external/mbedtls/library/platform_util.c" selected="1" top="0" codecName="Default"/>
+ </Files>
+ <ARMCrossStudioWindow activeProject="ble_app_hrs_c_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
+</session>
