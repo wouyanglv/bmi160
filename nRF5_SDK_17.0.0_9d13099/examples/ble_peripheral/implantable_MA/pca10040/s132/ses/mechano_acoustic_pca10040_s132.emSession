@@ -38,10 +38,10 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="136" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="120" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="181" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../ble_bio_sig_svc.c" selected="1" top="190" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="92" useTextEdit="1" openedFrom="C:/mechano-acoustic/mechano-acoustic-nrf-firmware/nRF5_SDK_17.0.0_9d13099/examples/ble_peripheral/implantable_MA/ble_bio_sig_svc.c" useBinaryEdit="0" left="0" path="../../../ble_bio_sig_svc.h" selected="0" top="182" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="21" y="843" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="743" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="181" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../ble_bio_sig_svc.c" selected="0" top="37" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="90" useTextEdit="1" openedFrom="C:/mechano-acoustic/mechano-acoustic-nrf-firmware/nRF5_SDK_17.0.0_9d13099/examples/ble_peripheral/implantable_MA/ble_bio_sig_svc.c" useBinaryEdit="0" left="0" path="../../../ble_bio_sig_svc.h" selected="1" top="74" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="7619" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="7603" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="mechano_acoustic_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="mechano_acoustic_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
