@@ -58,7 +58,11 @@
 
 struct bmi160_sensor_data initial_value_biosig[38] = {0};
 static bool m_wait_ble_tx;
-static uint32_t flush = 0;
+
+static uint16_t counter_overflow = 0;
+static uint32_t counter = 0;
+
+
 
 /**@brief Function for handling the Connect event.
  *
@@ -122,23 +126,35 @@ void ble_biosig_svc_on_ble_evt(ble_evt_t const *p_ble_evt, void *p_context)
 // Did not encode sampling rate, because it is not stable, setting 1600 Hz actually gets about ~1800 Hz.
 static uint8_t biosignal_encode(ble_biosig_t *p_biosig_svc, uint64_t timestamp, uint8_t frame_num, struct bmi160_sensor_data * accel_data, int8_t *p_encoded_buffer)
 {
-    uint8_t len = 0;
-    
-    memcpy(&(p_encoded_buffer[len]), &timestamp, sizeof(uint64_t));
-    len += sizeof(uint64_t);
-    memcpy(&(p_encoded_buffer[len]), &frame_num, sizeof(uint8_t));
-    
-    len += sizeof(uint8_t);
-    
-    for(int i=0;i<frame_num;i++)
-    {
-       memcpy(&(p_encoded_buffer[len]), &(accel_data[i]), 3*sizeof(int16_t));
-       
-       len += 3*sizeof(int16_t);
-       
-    }
+    uint8_t index = 0;
+    uint8_t channels = 3;
+    uint8_t data_type_size = sizeof(int16_t);
 
-    return len;
+    uint16_t payload_size = 2 + 1 + 1 + 4 + frame_num*channels*data_type_size;
+    memcpy(&(p_encoded_buffer[index]), &payload_size, sizeof(uint16_t));
+    index += sizeof(uint16_t);
+
+    uint8_t reserved_byte = 0;
+    memcpy(&(p_encoded_buffer[index]), &reserved_byte, sizeof(uint8_t));
+    index += sizeof(uint8_t);
+
+    counter_overflow += (counter == 4294967295 ? 1:0);
+    uint8_t third_byte = ((channels << 4) & 0b11110000) | (counter_overflow & 0b00001111);
+    memcpy(&(p_encoded_buffer[index]), &third_byte, sizeof(uint8_t));
+    index += sizeof(uint8_t);
+
+    counter += 1;
+    memcpy(&(p_encoded_buffer[index]), &counter, sizeof(uint32_t));
+    index += sizeof(uint32_t);
+    
+    for(uint8_t i=0;i<frame_num;i++)
+    {
+       memcpy(&(p_encoded_buffer[index]), &(accel_data[i]), 3*sizeof(int16_t));      
+       index += 3*sizeof(int16_t);       
+    }
+    
+    SEGGER_RTT_printf(0,"payload: %d\n", index);
+    return index;
 }
 
 
@@ -165,6 +181,7 @@ uint32_t ble_biosig_svc_init(ble_biosig_t *p_biosig_svc, ble_biosig_svc_init_t c
     ble_uuid.type = p_biosig_svc->uuid_type;
     ble_uuid.uuid = BLE_UUID_BIOSIG_SERVICE;
     
+    SEGGER_RTT_printf(0,"uuid type: %d\n", p_biosig_svc->uuid_type);
 
 
     //BLE_UUID_BLE_ASSIGN(ble_uuid, BLE_UUID_HEART_RATE_SERVICE);
@@ -182,11 +199,14 @@ uint32_t ble_biosig_svc_init(ble_biosig_t *p_biosig_svc, ble_biosig_svc_init_t c
     memset(&add_char_params, 0, sizeof(add_char_params));
 
     add_char_params.uuid              = BLE_UUID_BIOSIG_MEASUREMENT_CHAR;
+    add_char_params.uuid_type         = p_biosig_svc->uuid_type;
     add_char_params.max_len           = MAX_BIOSIG_LEN;
     add_char_params.init_len          = biosignal_encode(p_biosig_svc, INITIAL_TIMESTAMP_BIOSIG, 38, initial_value_biosig, encoded_initial_biosig);
     add_char_params.p_init_value      = encoded_initial_biosig;
     add_char_params.is_var_len        = true;
     add_char_params.char_props.notify = 1;
+    //add_char_params.char_props.read = 1;
+    //add_char_params.char_props.write = 1;
     add_char_params.cccd_write_access = p_biosig_init->cccd_wr_sec;
     add_char_params.read_access       = p_biosig_init->rd_sec;
 
@@ -221,6 +241,7 @@ uint32_t ble_biosig_svc_measurement_send(ble_biosig_t *p_biosig_svc, uint64_t ti
         // https://devzone.nordicsemi.com/f/nordic-q-a/5646/how-to-enable-indication-for-a-characteristic
         hvx_params.handle = p_biosig_svc->biosig_handles.value_handle;
         hvx_params.type   = BLE_GATT_HVX_NOTIFICATION;
+
         hvx_params.offset = 0;
         hvx_params.p_len  = &hvx_len;
         hvx_params.p_data = encoded_biosig;

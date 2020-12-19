@@ -139,7 +139,7 @@ static uint16_t m_conn_handle         = BLE_CONN_HANDLE_INVALID;    /**< Handle 
 
 static ble_uuid_t m_adv_uuids[] =                                   /**< Universally unique service identifiers. */
 {
-    {BLE_UUID_BIOSIG_SERVICE,           BLE_UUID_TYPE_BLE},
+    {BLE_UUID_BIOSIG_SERVICE,           BLE_UUID_TYPE_VENDOR_BEGIN}
 };
 
 static bool             m_startup_delay;
@@ -1105,9 +1105,9 @@ int main(void)
     ble_stack_init();
     sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);
     gap_params_init();
-    gatt_init();
-    advertising_init();
+    gatt_init();    
     services_init();
+    advertising_init();
     conn_params_init();
     peer_manager_init();
     //application_timers_start();

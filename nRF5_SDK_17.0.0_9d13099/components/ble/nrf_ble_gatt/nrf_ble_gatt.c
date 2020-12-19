@@ -150,29 +150,29 @@ static void on_connected_evt(nrf_ble_gatt_t * p_gatt, ble_evt_t const * p_ble_ev
     }
 
     // Begin an ATT MTU exchange if necessary.
-    if (p_link->att_mtu_desired > p_link->att_mtu_effective)
-    {
-        NRF_LOG_DEBUG("Requesting to update ATT MTU to %u bytes on connection 0x%x.",
-                      p_link->att_mtu_desired, conn_handle);
-
-        err_code = sd_ble_gattc_exchange_mtu_request(conn_handle, p_link->att_mtu_desired);
-
-        if (err_code == NRF_SUCCESS)
-        {
-            p_link->att_mtu_exchange_requested = true;
-        }
-        else if (err_code == NRF_ERROR_BUSY)
-        {
-            p_link->att_mtu_exchange_pending = true;
-            NRF_LOG_DEBUG("sd_ble_gattc_exchange_mtu_request()"
-                          " on connection 0x%x returned busy, will retry.", conn_handle);
-        }
-        else
-        {
-            NRF_LOG_ERROR("sd_ble_gattc_exchange_mtu_request() returned %s.",
-                          nrf_strerror_get(err_code));
-        }
-    }
+//    if (p_link->att_mtu_desired > p_link->att_mtu_effective)
+//    {
+//        NRF_LOG_DEBUG("Requesting to update ATT MTU to %u bytes on connection 0x%x.",
+//                      p_link->att_mtu_desired, conn_handle);
+//
+//        err_code = sd_ble_gattc_exchange_mtu_request(conn_handle, p_link->att_mtu_desired);
+//
+//        if (err_code == NRF_SUCCESS)
+//        {
+//            p_link->att_mtu_exchange_requested = true;
+//        }
+//        else if (err_code == NRF_ERROR_BUSY)
+//        {
+//            p_link->att_mtu_exchange_pending = true;
+//            NRF_LOG_DEBUG("sd_ble_gattc_exchange_mtu_request()"
+//                          " on connection 0x%x returned busy, will retry.", conn_handle);
+//        }
+//        else
+//        {
+//            NRF_LOG_ERROR("sd_ble_gattc_exchange_mtu_request() returned %s.",
+//                          nrf_strerror_get(err_code));
+//        }
+//    }
 
 #if !defined (S112) && !defined(S312) && !defined (S122)
     // Send a data length update request if necessary.
