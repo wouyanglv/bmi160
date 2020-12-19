@@ -24466,16 +24466,16 @@ Linker script and memory map
                 0x000000000003ecc0      0x14e Output/mechano_acoustic_pca10040_s132 Debug/Obj/main.o
  *fill*         0x000000000003ee0e        0x2 
  .rodata.gap_params_init.str1.4
-                0x000000000003ee10        0xf Output/mechano_acoustic_pca10040_s132 Debug/Obj/main.o
- *fill*         0x000000000003ee1f        0x1 
+                0x000000000003ee10        0x5 Output/mechano_acoustic_pca10040_s132 Debug/Obj/main.o
+ *fill*         0x000000000003ee15        0x3 
  .rodata.gatt_evt_handler.str1.4
-                0x000000000003ee20       0x55 Output/mechano_acoustic_pca10040_s132 Debug/Obj/main.o
- *fill*         0x000000000003ee75        0x3 
+                0x000000000003ee18       0x55 Output/mechano_acoustic_pca10040_s132 Debug/Obj/main.o
+ *fill*         0x000000000003ee6d        0x3 
  .rodata.on_adv_evt.str1.4
-                0x000000000003ee78       0x12 Output/mechano_acoustic_pca10040_s132 Debug/Obj/main.o
- *fill*         0x000000000003ee8a        0x2 
- .rodata        0x000000000003ee8c        0xf Output/mechano_acoustic_pca10040_s132 Debug/Obj/main.o
- *fill*         0x000000000003ee9b        0x5 
+                0x000000000003ee70       0x12 Output/mechano_acoustic_pca10040_s132 Debug/Obj/main.o
+ *fill*         0x000000000003ee82        0x2 
+ .rodata        0x000000000003ee84        0xf Output/mechano_acoustic_pca10040_s132 Debug/Obj/main.o
+ *fill*         0x000000000003ee93        0xd 
  .rodata.delay_machine_code.11002
                 0x000000000003eea0        0x6 Output/mechano_acoustic_pca10040_s132 Debug/Obj/main.o
  *fill*         0x000000000003eea6        0x2 
@@ -26250,7 +26250,7 @@ OUTPUT(Output/Debug/Exe/mechano_acoustic_pca10040_s132.elf elf32-littlearm)
  .debug_aranges
                 0x00000000000030c8       0x28 Output/mechano_acoustic_pca10040_s132 Debug/Obj/oberon_backend_ecdh.o
 
-.debug_str      0x0000000000000000    0xb59aa
+.debug_str      0x0000000000000000    0xb59a0
  .debug_str     0x0000000000000000       0xe2 Output/mechano_acoustic_pca10040_s132 Debug/Obj/thumb_crt0.o
  .debug_str     0x00000000000000e2    0x7679e Output/mechano_acoustic_pca10040_s132 Debug/Obj/bsp.o
                                       0x786b1 (size before relaxing)
@@ -26356,77 +26356,77 @@ OUTPUT(Output/Debug/Exe/mechano_acoustic_pca10040_s132.elf elf32-littlearm)
                                       0x6f849 (size before relaxing)
  .debug_str     0x000000000009fc8d      0x34e Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_crypto_rng.o
                                       0x73aa4 (size before relaxing)
- .debug_str     0x000000000009ffdb     0xa23f Output/mechano_acoustic_pca10040_s132 Debug/Obj/main.o
-                                      0x8fc69 (size before relaxing)
- .debug_str     0x00000000000aa21a       0xb9 Output/mechano_acoustic_pca10040_s132 Debug/Obj/spi.o
+ .debug_str     0x000000000009ffdb     0xa235 Output/mechano_acoustic_pca10040_s132 Debug/Obj/main.o
+                                      0x8fc5f (size before relaxing)
+ .debug_str     0x00000000000aa210       0xb9 Output/mechano_acoustic_pca10040_s132 Debug/Obj/spi.o
                                       0x79ec1 (size before relaxing)
- .debug_str     0x00000000000aa2d3     0x10c0 Output/mechano_acoustic_pca10040_s132 Debug/Obj/bmi160.o
+ .debug_str     0x00000000000aa2c9     0x10c0 Output/mechano_acoustic_pca10040_s132 Debug/Obj/bmi160.o
                                        0xa063 (size before relaxing)
- .debug_str     0x00000000000ab393      0x968 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_bio_sig_svc.o
+ .debug_str     0x00000000000ab389      0x968 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_bio_sig_svc.o
                                       0x7cabd (size before relaxing)
- .debug_str     0x00000000000abcfb      0x546 Output/mechano_acoustic_pca10040_s132 Debug/Obj/SEGGER_RTT.o
+ .debug_str     0x00000000000abcf1      0x546 Output/mechano_acoustic_pca10040_s132 Debug/Obj/SEGGER_RTT.o
                                       0x69081 (size before relaxing)
- .debug_str     0x00000000000ac241      0x129 Output/mechano_acoustic_pca10040_s132 Debug/Obj/SEGGER_RTT_printf.o
+ .debug_str     0x00000000000ac237      0x129 Output/mechano_acoustic_pca10040_s132 Debug/Obj/SEGGER_RTT_printf.o
                                       0x68dc8 (size before relaxing)
- .debug_str     0x00000000000ac36a       0x6f Output/mechano_acoustic_pca10040_s132 Debug/Obj/ses_startup_nrf52.o
+ .debug_str     0x00000000000ac360       0x6f Output/mechano_acoustic_pca10040_s132 Debug/Obj/ses_startup_nrf52.o
                                         0x100 (size before relaxing)
- .debug_str     0x00000000000ac3d9       0x74 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ses_startup_nrf_common.o
+ .debug_str     0x00000000000ac3cf       0x74 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ses_startup_nrf_common.o
                                         0x105 (size before relaxing)
- .debug_str     0x00000000000ac44d      0x228 Output/mechano_acoustic_pca10040_s132 Debug/Obj/system_nrf52.o
+ .debug_str     0x00000000000ac443      0x228 Output/mechano_acoustic_pca10040_s132 Debug/Obj/system_nrf52.o
                                       0x5d890 (size before relaxing)
- .debug_str     0x00000000000ac675       0xa1 Output/mechano_acoustic_pca10040_s132 Debug/Obj/hardfault_handler_gcc.o
+ .debug_str     0x00000000000ac66b       0xa1 Output/mechano_acoustic_pca10040_s132 Debug/Obj/hardfault_handler_gcc.o
                                       0x6f1e5 (size before relaxing)
- .debug_str     0x00000000000ac716      0x46d Output/mechano_acoustic_pca10040_s132 Debug/Obj/auth_status_tracker.o
+ .debug_str     0x00000000000ac70c      0x46d Output/mechano_acoustic_pca10040_s132 Debug/Obj/auth_status_tracker.o
                                       0x78bf8 (size before relaxing)
- .debug_str     0x00000000000acb83      0x4c0 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_advdata.o
+ .debug_str     0x00000000000acb79      0x4c0 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_advdata.o
                                       0x7674f (size before relaxing)
- .debug_str     0x00000000000ad043      0x352 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_advertising.o
+ .debug_str     0x00000000000ad039      0x352 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_advertising.o
                                       0x7a1b0 (size before relaxing)
- .debug_str     0x00000000000ad395      0x324 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_conn_params.o
+ .debug_str     0x00000000000ad38b      0x324 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_conn_params.o
                                       0x78500 (size before relaxing)
- .debug_str     0x00000000000ad6b9      0x87f Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_conn_state.o
+ .debug_str     0x00000000000ad6af      0x87f Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_conn_state.o
                                       0x77c3c (size before relaxing)
- .debug_str     0x00000000000adf38      0x2e1 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_srv_common.o
+ .debug_str     0x00000000000adf2e      0x2e1 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_srv_common.o
                                       0x6d743 (size before relaxing)
- .debug_str     0x00000000000ae219      0xbc5 Output/mechano_acoustic_pca10040_s132 Debug/Obj/gatt_cache_manager.o
+ .debug_str     0x00000000000ae20f      0xbc5 Output/mechano_acoustic_pca10040_s132 Debug/Obj/gatt_cache_manager.o
                                       0x7c6de (size before relaxing)
- .debug_str     0x00000000000aedde      0x378 Output/mechano_acoustic_pca10040_s132 Debug/Obj/gatts_cache_manager.o
+ .debug_str     0x00000000000aedd4      0x378 Output/mechano_acoustic_pca10040_s132 Debug/Obj/gatts_cache_manager.o
                                       0x7acb5 (size before relaxing)
- .debug_str     0x00000000000af156      0x66a Output/mechano_acoustic_pca10040_s132 Debug/Obj/id_manager.o
+ .debug_str     0x00000000000af14c      0x66a Output/mechano_acoustic_pca10040_s132 Debug/Obj/id_manager.o
                                       0x7c7a1 (size before relaxing)
- .debug_str     0x00000000000af7c0      0x39f Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_ble_gatt.o
+ .debug_str     0x00000000000af7b6      0x39f Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_ble_gatt.o
                                       0x79071 (size before relaxing)
- .debug_str     0x00000000000afb5f     0x2789 Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_ble_lesc.o
+ .debug_str     0x00000000000afb55     0x2789 Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_ble_lesc.o
                                       0x803e3 (size before relaxing)
- .debug_str     0x00000000000b22e8      0x241 Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_ble_qwr.o
+ .debug_str     0x00000000000b22de      0x241 Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_ble_qwr.o
                                       0x771d7 (size before relaxing)
- .debug_str     0x00000000000b2529      0x635 Output/mechano_acoustic_pca10040_s132 Debug/Obj/peer_database.o
+ .debug_str     0x00000000000b251f      0x635 Output/mechano_acoustic_pca10040_s132 Debug/Obj/peer_database.o
                                       0x7aefc (size before relaxing)
- .debug_str     0x00000000000b2b5e      0x157 Output/mechano_acoustic_pca10040_s132 Debug/Obj/peer_id.o
+ .debug_str     0x00000000000b2b54      0x157 Output/mechano_acoustic_pca10040_s132 Debug/Obj/peer_id.o
                                       0x75c3f (size before relaxing)
- .debug_str     0x00000000000b2cb5      0x865 Output/mechano_acoustic_pca10040_s132 Debug/Obj/peer_manager.o
+ .debug_str     0x00000000000b2cab      0x865 Output/mechano_acoustic_pca10040_s132 Debug/Obj/peer_manager.o
                                       0x7c7a2 (size before relaxing)
- .debug_str     0x00000000000b351a      0x34b Output/mechano_acoustic_pca10040_s132 Debug/Obj/peer_manager_handler.o
+ .debug_str     0x00000000000b3510      0x34b Output/mechano_acoustic_pca10040_s132 Debug/Obj/peer_manager_handler.o
                                       0x7bfee (size before relaxing)
- .debug_str     0x00000000000b3865      0x153 Output/mechano_acoustic_pca10040_s132 Debug/Obj/pm_buffer.o
+ .debug_str     0x00000000000b385b      0x153 Output/mechano_acoustic_pca10040_s132 Debug/Obj/pm_buffer.o
                                       0x6f652 (size before relaxing)
- .debug_str     0x00000000000b39b8      0x4f4 Output/mechano_acoustic_pca10040_s132 Debug/Obj/security_dispatcher.o
+ .debug_str     0x00000000000b39ae      0x4f4 Output/mechano_acoustic_pca10040_s132 Debug/Obj/security_dispatcher.o
                                       0x7c735 (size before relaxing)
- .debug_str     0x00000000000b3eac      0x382 Output/mechano_acoustic_pca10040_s132 Debug/Obj/security_manager.o
+ .debug_str     0x00000000000b3ea2      0x382 Output/mechano_acoustic_pca10040_s132 Debug/Obj/security_manager.o
                                       0x7beca (size before relaxing)
- .debug_str     0x00000000000b422e      0x393 Output/mechano_acoustic_pca10040_s132 Debug/Obj/peer_data_storage.o
+ .debug_str     0x00000000000b4224      0x393 Output/mechano_acoustic_pca10040_s132 Debug/Obj/peer_data_storage.o
                                       0x7aef4 (size before relaxing)
- .debug_str     0x00000000000b45c1      0x3c0 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_bas.o
+ .debug_str     0x00000000000b45b7      0x3c0 Output/mechano_acoustic_pca10040_s132 Debug/Obj/ble_bas.o
                                       0x7a062 (size before relaxing)
- .debug_str     0x00000000000b4981      0x499 Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_sdh.o
+ .debug_str     0x00000000000b4977      0x499 Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_sdh.o
                                       0x74662 (size before relaxing)
- .debug_str     0x00000000000b4e1a      0x386 Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
+ .debug_str     0x00000000000b4e10      0x386 Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
                                       0x7966e (size before relaxing)
- .debug_str     0x00000000000b51a0      0x1bc Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
+ .debug_str     0x00000000000b5196      0x1bc Output/mechano_acoustic_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
                                       0x73606 (size before relaxing)
- .debug_str     0x00000000000b535c      0x530 Output/mechano_acoustic_pca10040_s132 Debug/Obj/oberon_backend_ecc.o
+ .debug_str     0x00000000000b5352      0x530 Output/mechano_acoustic_pca10040_s132 Debug/Obj/oberon_backend_ecc.o
                                       0x72f11 (size before relaxing)
- .debug_str     0x00000000000b588c      0x11e Output/mechano_acoustic_pca10040_s132 Debug/Obj/oberon_backend_ecdh.o
+ .debug_str     0x00000000000b5882      0x11e Output/mechano_acoustic_pca10040_s132 Debug/Obj/oberon_backend_ecdh.o
                                       0x723e0 (size before relaxing)
 
 .debug_ranges   0x0000000000000000     0x5e68
